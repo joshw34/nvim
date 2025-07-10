@@ -3,7 +3,7 @@ return {
   build = ":TSUpdate",
   config = function()
     require("nvim-treesitter.configs").setup({
-      ensure_installed = { "c", "cpp", "nix", "lua", "hyprlang" },
+      ensure_installed = { "c", "cpp", "lua" },
       highlight = {
         enable = true,
       },
