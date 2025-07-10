@@ -1,0 +1,7 @@
+sessions/
+
+lazy-lock.json
+
+*.log
+*.tmp
+*.swp

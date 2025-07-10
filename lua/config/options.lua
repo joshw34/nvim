@@ -1,0 +1,23 @@
+-- Set Neovim options
+vim.opt.tabstop = 4
+vim.opt.shiftwidth = 4
+vim.opt.expandtab = true
+vim.opt.smartindent = true
+vim.opt.autoindent = true
+vim.opt.number = false
+vim.opt.relativenumber = true
+vim.opt.numberwidth = 2
+vim.opt.signcolumn = "auto"
+vim.opt.cursorline = true
+vim.opt.cursorlineopt = "number"
+vim.opt.wrap = false
+vim.opt.scrolloff = 8
+vim.opt.sidescrolloff = 8
+vim.opt.linebreak = true
+
+vim.opt.breakindent = true
+vim.opt.cmdheight = 0
+vim.opt.foldcolumn = "0"
+vim.opt.foldlevel = 99
+vim.opt.foldlevelstart = 99
+vim.opt.foldenable = true
