@@ -9,7 +9,7 @@ return {
       auto_restore_last_session = false,
       auto_save = false,
       cwd_change_handling = false,
-      root_dir = vim.fn.expand("~/.config/nvim/sessions/"),
+      root_dir = vim.fn.expand("~/.config/nvimsessions/"),
       use_git_branch = true,
       session_lens = {
         load_on_setup = true,
