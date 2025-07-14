@@ -5,7 +5,7 @@ return {
     
     vim.diagnostic.config({
       virtual_text = false,
-      virtual_lines = false, -- Disable inline virtual lines
+      virtual_lines = false,
       float = {
         border = "rounded",
         source = "always",
@@ -31,10 +31,10 @@ return {
       end
     })
     
-    -- Optional: Add a keymap to manually show diagnostics
+    -- manually show diagnostics
     vim.keymap.set("n", "<leader>d", vim.diagnostic.open_float, { desc = "Show line diagnostics" })
     
-    -- Set updatetime for CursorHold event (default is 4000ms)
+    -- updatetime for CursorHold event
     vim.opt.updatetime = 200
   end,
 }
