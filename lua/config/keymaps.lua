@@ -27,7 +27,7 @@ keymap("n", "<leader>se", "<C-w>=", { desc = "Make splits equal size" })
 keymap("n", "<leader>sx", "<cmd>close<cr>", { desc = "Close current split" })
 
 -- Buffer
-keymap("n", "<leader>c", "<cmd>bp|bd #<cr>", { desc = "Delete buffer keep window" })
+keymap("n", "<leader>x", "<cmd>bp|bd #<cr>", { desc = "Delete buffer keep window" })
 
 -- Window navigation
 keymap("n", "<C-h>", "<C-w>h", { desc = "Go to left window" })

@@ -19,5 +19,7 @@ return {
     vim.keymap.set("n", "<leader>fd", builtin.lsp_definitions, { desc = "Show lsp definitions" })
     vim.keymap.set("n", "<leader>ft", builtin.lsp_type_definitions, { desc = "Show lsp type definitions" })
     vim.keymap.set("n", "<leader>fr", builtin.lsp_references, { desc = "Show lsp references" })
+    vim.keymap.set("n", "<leader>fci", builtin.lsp_incoming_calls, { desc = "Show incoming calls" })
+    vim.keymap.set("n", "<leader>fco", builtin.lsp_outgoing_calls, { desc = "Show outgoing calls" })
   end,
 }
