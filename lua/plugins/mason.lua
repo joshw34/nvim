@@ -10,66 +10,61 @@ return {
     config = function()
       require("mason-lspconfig").setup({
         ensure_installed = { "clangd", "lua_ls" },
-        handlers = {
-          -- Default handler for any server not explicitly configured
-          function(server_name)
-            require("lspconfig")[server_name].setup({
-              capabilities = require("blink.cmp").get_lsp_capabilities(),
-            })
-          end,
-          
-          -- Custom clangd configuration
-          ["clangd"] = function()
-            local lspconfig = require("lspconfig")
-            local capabilities = require("blink.cmp").get_lsp_capabilities()
-            capabilities.textDocument.semanticTokens = {
-              multilineTokenSupport = true
-            }
-            
-            lspconfig.clangd.setup({
-              cmd = {
-                "clangd",
-                "--header-insertion=never",
-                "--completion-style=detailed",
-                "--function-arg-placeholders=false",
-                "--suggest-missing-includes=false",
-                "--background-index",
-                "--pch-storage=memory"
-              },
-              filetypes = { "c", "cpp", "h", "hpp" },
-              root_dir = lspconfig.util.root_pattern("compile_commands.json", "compile_flags.txt", ".clangd", ".git"),
-              capabilities = capabilities,
-            })
-          end,
-          
-          -- Custom lua_ls configuration
-          ["lua_ls"] = function()
-            local lspconfig = require("lspconfig")
-            local capabilities = require("blink.cmp").get_lsp_capabilities()
-            
-            lspconfig.lua_ls.setup({
-              root_dir = lspconfig.util.root_pattern(".git"),
-              capabilities = capabilities,
-              settings = {
-                Lua = {
-                  diagnostics = {
-                    globals = { "vim" },
-                  },
-                  workspace = {
-                    library = vim.api.nvim_get_runtime_file("", true),
-                  },
-                  telemetry = {
-                    enable = false,
-                  },
-                },
-              },
-            })
-          end,
-        },
+        automatic_setup = false,
       })
     end,
   },
   {
     "neovim/nvim-lspconfig",
+    config = function()
+      local lspconfig = require("lspconfig")
+      
+      -- Use blink.cmp capabilities for better integration
+      local capabilities = require("blink.cmp").get_lsp_capabilities()
+      capabilities.textDocument.semanticTokens = {
+        multilineTokenSupport = true
+      }
+      
+      -- Helper function to find root directory
+      local function find_root(patterns)
+        return lspconfig.util.root_pattern(unpack(patterns))
+      end
+      
+      -- Clangd setup
+      lspconfig.clangd.setup({
+        cmd = {
+          "clangd",
+          "--header-insertion=never",
+          "--completion-style=detailed",
+          "--function-arg-placeholders=true",
+          "--suggest-missing-includes=false",
+          "--background-index",
+          "--pch-storage=memory"
+        },
+        filetypes = { "c", "cpp", "h", "hpp" },
+        root_dir = find_root({ "compile_commands.json", "compile_flags.txt", ".clangd", ".git" }),
+        capabilities = capabilities,
+      })
+      
+      -- Lua LSP setup
+      lspconfig.lua_ls.setup({
+        root_dir = find_root({ ".git" }),
+        capabilities = capabilities,
+        settings = {
+          Lua = {
+            diagnostics = {
+              globals = { "vim" },
+            },
+            workspace = {
+              library = vim.api.nvim_get_runtime_file("", true),
+            },
+            telemetry = {
+              enable = false,
+            },
+          },
+        },
+      })
+      
+    end,
   },
 }
