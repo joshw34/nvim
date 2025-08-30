@@ -33,7 +33,7 @@ return {
           "--background-index",
           "--pch-storage=memory"
         },
-        filetypes = { "c", "cpp", "h", "hpp" },
+        filetypes = { "c", "cpp", "h", "hpp", "tpp" },
         root_dir = find_root({ "compile_commands.json", "compile_flags.txt", ".clangd", ".git" }),
         capabilities = capabilities,
       })

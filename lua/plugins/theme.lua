@@ -22,13 +22,9 @@ return {
           ["@keyword.exception"] = { fg = "#9e5560", fmt = "bold" },
         },
       })
-      require("neomodern").load()
+      --require("neomodern").load()
       vim.api.nvim_set_hl(0, "@lsp.mod.readonly", {})
     end,
-  },
-  {
-    'Mofiqul/vscode.nvim',
-    priority = 1000
   },
   {
     "AstroNvim/astrotheme",
@@ -43,10 +39,10 @@ return {
         },
 
         style = {
-          transparent = true,         -- Bool value, toggles transparency.
-          inactive = false,             -- Bool value, toggles inactive window color.
-          float = false,                -- Bool value, toggles floating windows background colors.
-          neotree = false,              -- Bool value, toggles neo-trees background color.
+          transparent = false,         -- Bool value, toggles transparency.
+          inactive = true,             -- Bool value, toggles inactive window color.
+          float = true,                -- Bool value, toggles floating windows background colors.
+          neotree = true,              -- Bool value, toggles neo-trees background color.
           border = true,               -- Bool value, toggles borders.
           title_invert = true,         -- Bool value, swaps text and background colors.
           italic_comments = true,      -- Bool value, toggles italic comments.
@@ -64,5 +60,54 @@ return {
                            -- false: Disables all plugins.
       })
     end
+  },
+  { "catppuccin/nvim",
+    name = "catppuccin",
+    priority = 1000,
+    config = function ()
+      require("catppuccin").setup({
+        flavour = "mocha", -- latte, frappe, macchiato, mocha
+        background = { -- :h background
+          light = "latte",
+          dark = "mocha",
+        },
+        transparent_background = false, -- disables setting the background color.
+        float = {
+          transparent = false, -- enable transparent floating windows
+          solid = false, -- use solid styling for floating windows, see |winborder|
+        },
+        show_end_of_buffer = false, -- shows the '~' characters after the end of buffers
+        term_colors = false, -- sets terminal colors (e.g. `g:terminal_color_0`)
+        dim_inactive = {
+          enabled = true, -- dims the background color of inactive window
+          shade = "dark",
+          percentage = 0.15, -- percentage of the shade to apply to the inactive window
+        },
+        no_italic = false, -- Force no italic
+        no_bold = false, -- Force no bold
+        no_underline = false, -- Force no underline
+        styles = { -- Handles the styles of general hi groups (see `:h highlight-args`):
+          comments = { "italic" }, -- Change the style of comments
+          conditionals = {},
+          loops = {},
+          functions = { "italic" },
+          keywords = {},
+          strings = {},
+          variables = {},
+          numbers = {},
+          booleans = {},
+          properties = {},
+          types = {},
+          operators = {},
+          -- miscs = {}, -- Uncomment to turn off hard-coded styles
+        },
+        color_overrides = {},
+        custom_highlights = {},
+        default_integrations = true,
+        auto_integrations = true,
+      })
+    vim.api.nvim_set_hl(0, "@module.cpp", {})
+    vim.cmd.colorscheme "catppuccin"
+    end,
   }
 }
