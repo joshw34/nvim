@@ -24,6 +24,7 @@ return {
       })
       --require("neomodern").load()
       vim.api.nvim_set_hl(0, "@lsp.mod.readonly", {})
+      vim.cmd.colorscheme "hojicha"
     end,
   },
   {
@@ -79,7 +80,7 @@ return {
         show_end_of_buffer = false, -- shows the '~' characters after the end of buffers
         term_colors = false, -- sets terminal colors (e.g. `g:terminal_color_0`)
         dim_inactive = {
-          enabled = true, -- dims the background color of inactive window
+          enabled = false, -- dims the background color of inactive window
           shade = "dark",
           percentage = 0.15, -- percentage of the shade to apply to the inactive window
         },
@@ -107,7 +108,7 @@ return {
         auto_integrations = true,
       })
     vim.api.nvim_set_hl(0, "@module.cpp", {})
-    vim.cmd.colorscheme "catppuccin"
+    --vim.cmd.colorscheme "catppuccin"
     end,
-  }
+  },
 }
