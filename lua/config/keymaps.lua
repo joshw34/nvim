@@ -12,7 +12,7 @@ keymap("n", "<leader>e", "<cmd>NvimTreeToggle<cr>", { desc = "Toggle File Tree" 
 keymap("n", "<leader>gg", "<cmd>LazyGit<cr>", { desc = "Show LazyGit Terminal" })
 
 -- Session
-keymap("n", "<leader>ss", ":SessionSave ", { desc = "Save Session" })
+keymap("n", "<leader>ss", ":AutoSession save ", { desc = "Save Session" })
 keymap("n", "<leader>sl", ":Telescope session-lens<cr>", { desc = "Load Session" })
 keymap("n", "<leader>sd", "<cmd>Autosession delete<cr>", { desc = "Delete Session" })
 
