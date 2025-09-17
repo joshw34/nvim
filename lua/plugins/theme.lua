@@ -24,7 +24,7 @@ return {
       })
       --require("neomodern").load()
       vim.api.nvim_set_hl(0, "@lsp.mod.readonly", {})
-      --vim.cmd.colorscheme "gyokuro"
+      vim.cmd.colorscheme "gyokuro"
     end,
   },
   {
@@ -95,10 +95,10 @@ return {
       })
 
       -- setup must be called before loading
-      vim.cmd("colorscheme kanagawa")
+      --vim.cmd("colorscheme kanagawa")
     end
   },
-  { 
+  {
     "catppuccin/nvim",
     name = "catppuccin",
     priority = 1000,
@@ -148,5 +148,10 @@ return {
     --vim.cmd.colorscheme "catppuccin"
     end,
   },
-
+  {
+    "folke/tokyonight.nvim",
+    lazy = false,
+    priority = 1000,
+    opts = {},
+  },
 }
