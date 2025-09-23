@@ -12,9 +12,9 @@ keymap("n", "<leader>e", "<cmd>NvimTreeToggle<cr>", { desc = "Toggle File Tree" 
 keymap("n", "<leader>gg", "<cmd>LazyGit<cr>", { desc = "Show LazyGit Terminal" })
 
 -- Session
-keymap("n", "<leader>ss", ":AutoSession save ", { desc = "Save Session" })
-keymap("n", "<leader>sl", ":Telescope session-lens<cr>", { desc = "Load Session" })
-keymap("n", "<leader>sd", "<cmd>Autosession delete<cr>", { desc = "Delete Session" })
+keymap("n", "<leader>ss", "<cmd>AutoSession save<cr>", { desc = "Save Session" })
+keymap("n", "<leader>sl", "<cmd>AutoSession search<cr>", { desc = "Load Session" })
+keymap("n", "<leader>sd", "<cmd>AutoSession deletePicker<cr>", { desc = "Delete Session" })
 
 -- BufferLine
 keymap("n", ",b", "<cmd>BufferLineMovePrev<cr>", { desc = "Move buffer left" })
