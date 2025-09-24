@@ -9,8 +9,6 @@ return {
   {
     "neovim/nvim-lspconfig",
     config = function()
-      local lspconfig = require("lspconfig")
-
       -- Use blink.cmp capabilities for better integration
       local capabilities = require("blink.cmp").get_lsp_capabilities()
       capabilities.textDocument.semanticTokens = {
@@ -19,11 +17,11 @@ return {
 
       -- Helper function to find root directory
       local function find_root(patterns)
-        return lspconfig.util.root_pattern(unpack(patterns))
+        return vim.fs.root(0, patterns)
       end
 
       -- Clangd setup
-      lspconfig.clangd.setup({
+      vim.lsp.config.clangd = {
         cmd = {
           "clangd",
           "--header-insertion=never",
@@ -34,15 +32,15 @@ return {
           "--pch-storage=memory"
         },
         filetypes = { "c", "cpp", "h", "hpp", "tpp" },
-        root_dir = find_root({ "compile_commands.json", "compile_flags.txt", ".clangd", ".git" }),
+        root_markers = { "compile_commands.json", "compile_flags.txt", ".clangd", ".git" },
         capabilities = capabilities,
-      })
+      }
 
       -- gopls setup
-      lspconfig.gopls.setup({
+      vim.lsp.config.gopls = {
         cmd = { "gopls" },
         filetypes = { "go", "gomod", "gosum", "gotmpl" },
-        root_dir = find_root({"go.mod", ".git", "go.work"}),
+        root_markers = {"go.mod", ".git", "go.work"},
         capabilities = capabilities,
         settings = {
           gopls = {
@@ -79,24 +77,25 @@ return {
             semanticTokens = true,
           },
         },
-      })
+      }
 
       -- Nixd setup
-      lspconfig.nixd.setup({
+      vim.lsp.config.nixd = {
         cmd = { "nixd" },
         filetypes = { "nix" },
-        root_dir = find_root({"flake.nix"}),
+        root_markers = {"flake.nix"},
         capabilities = capabilities,
-      })
+      }
 
       -- Pyright setup
-      lspconfig.pyright.setup({
+      vim.lsp.config.pyright = {
         cmd = {
           "pyright-langserver",
           "--stdio"
-        };
+        },
         filetypes = { "python" },
-        root_dir = find_root({ ".git" }),
+        root_markers = { ".git" },
+        capabilities = capabilities,
         settings = {
           python = {
             analysis = {
@@ -106,11 +105,11 @@ return {
             },
           },
         },
-      })
+      }
 
       -- Lua LSP setup
-      lspconfig.lua_ls.setup({
-        root_dir = find_root({ ".git" }),
+      vim.lsp.config.lua_ls = {
+        root_markers = { ".git" },
         capabilities = capabilities,
         settings = {
           Lua = {
@@ -125,8 +124,8 @@ return {
             },
           },
         },
-      })
-
+      }
+      vim.lsp.enable({ 'clangd', 'gopls', 'nixd', 'pyright', 'lua_ls' })
     end,
   },
 }
