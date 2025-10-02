@@ -11,7 +11,7 @@ vim.opt.signcolumn = "auto"
 vim.opt.cursorline = true
 vim.opt.cursorlineopt = "number"
 vim.opt.wrap = false
-vim.opt.scrolloff = 8
+vim.opt.scrolloff = 2
 vim.opt.sidescrolloff = 8
 vim.opt.linebreak = true
 
