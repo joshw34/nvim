@@ -12,3 +12,13 @@ autocmd("TextYankPost", {
     })
   end,
 })
+
+-- Add $ to keyword characters for nginx files
+autocmd("FileType", {
+  desc = "Add $ to keywords in nginx files",
+  pattern = "nginx",
+  group = augroup("nginx-keywords", { clear = true }),
+  callback = function()
+    vim.opt_local.iskeyword:append("$")
+  end,
+})

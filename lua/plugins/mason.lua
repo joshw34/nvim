@@ -125,7 +125,39 @@ return {
           },
         },
       }
-      vim.lsp.enable({ 'clangd', 'gopls', 'nixd', 'pyright', 'lua_ls' })
+
+      -- Dockerfile LSP setup
+      vim.lsp.config.dockerls = {
+        cmd = { "docker-language-server", "start", "--stdio" },
+        filetypes = { "dockerfile", "yaml.docker-compose" },  -- Supports both!
+        get_language_id = function(_, ftype)
+          if ftype == 'yaml.docker-compose' or ftype:lower():find('ya?ml') then
+            return 'dockercompose'
+          else
+            return ftype
+          end
+        end,
+        root_markers = { ".git" },
+        capabilities = capabilities,
+        initializationOptions = {
+          dockercomposeExperimental = {
+          composeSupport = true,
+          },
+          dockerfileExperimental = {
+            removeOverlappingIssues = false,
+          },
+          telemetry = "off",
+        },
+      }
+
+      -- Nginx Language Server
+      vim.lsp.config.nginx_language_server = {
+        cmd = { "nginx-language-server" },
+        filetypes = { "nginx" },
+        root_markers = { "nginx.conf", ".git" },
+      }
+
+      vim.lsp.enable({ 'clangd', 'gopls', 'nixd', 'pyright', 'lua_ls', 'dockerls', 'nginx_language_server' })
     end,
   },
 }
