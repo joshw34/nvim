@@ -157,7 +157,20 @@ return {
         root_markers = { "nginx.conf", ".git" },
       }
 
-      vim.lsp.enable({ 'clangd', 'gopls', 'nixd', 'pyright', 'lua_ls', 'dockerls', 'nginx_language_server' })
+      -- HTML LSP
+      vim.lsp.config.html_lsp = {
+        cmd = { 'vscode-html-language-server', '--stdio' },
+        filetypes = { 'html', 'templ' },
+        root_markers = { 'package.json', '.git' },
+        settings = {},
+        init_options = {
+          provideFormatter = true,
+          embeddedLanguages = { css = true, javascript = true },
+          configurationSection = { 'html', 'css', 'javascript' },
+        },
+      }
+
+      vim.lsp.enable({ 'clangd', 'gopls', 'nixd', 'pyright', 'lua_ls', 'dockerls', 'nginx_language_server', 'html_lsp' })
     end,
   },
 }

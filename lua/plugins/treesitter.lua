@@ -3,7 +3,7 @@ return {
   build = ":TSUpdate",
   config = function()
     require("nvim-treesitter.configs").setup({
-      ensure_installed = { "c", "cpp", "lua", "python", "dockerfile", "nginx", "go" },
+      ensure_installed = { "c", "cpp", "lua", "python", "dockerfile", "nginx", "go", "html" },
       highlight = {
         enable = true,
       },
