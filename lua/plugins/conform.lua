@@ -17,6 +17,10 @@ return {
     },
   },
   opts = {
+    format_on_save = {
+        timeout_ms = 500,
+        lsp_fallback = true,
+      },
     formatters_by_ft = {
       c = { "clang_format" },
       cpp = { "clang_format" },
@@ -26,7 +30,7 @@ return {
     },
     formatters = {
       clang_format = {
-        args = { "--style=file" },
+        args = { "--style=file", "--fallback-style=Google" },
       },
     },
   },
