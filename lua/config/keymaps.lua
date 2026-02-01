@@ -40,3 +40,24 @@ keymap("n", "<C-Up>", "<cmd>resize +2<cr>", { desc = "Increase window height" })
 keymap("n", "<C-Down>", "<cmd>resize -2<cr>", { desc = "Decrease window height" })
 keymap("n", "<C-Left>", "<cmd>vertical resize -2<cr>", { desc = "Decrease window width" })
 keymap("n", "<C-Right>", "<cmd>vertical resize +2<cr>", { desc = "Increase window width" })
+
+-- Zoom Split
+local zoomed = false
+local saved_layout
+
+function ToggleZoom()
+  if zoomed then
+    -- Restore Previous Layout
+    vim.cmd("silent! source " .. saved_layout)
+    vim.fn.delete(saved_layout)
+    zoomed = false
+  else
+    -- Save layout to temp file, then :only
+    saved_layout = vim.fn.tempname()
+    vim.cmd("silent! mksession! " .. saved_layout)
+    vim.cmd("only")
+    zoomed = true
+  end
+end
+
+keymap("n", "<leader>sz", ToggleZoom, { desc = "Toggle Zoom" })
