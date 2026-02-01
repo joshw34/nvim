@@ -24,16 +24,22 @@ return {
         end,
       },
     })
-    -- DAP
+    -- DAP ADAPTERS
     dap.adapters.gdb = {
       type = "executable",
       command = "/usr/sbin/gdb",
       args = { "-i", "dap" }
     }
-
+    dap.adapters.lldb = {
+      type = "executable",
+      command = "/usr/bin/lldb-dap",
+      name = "lldb"
+    }
+    -- DAP CONFIGURATIONS
     dap.configurations.cpp = {
+      -- GDB
       {
-        name = "Launch file (no args)",
+        name = "[GDB] Launch (no args)",
         type = "gdb",
         request = "launch",
         program = function()
@@ -43,7 +49,7 @@ return {
         stopAtBeginningOfMainSubprogram = false,
       },
       {
-        name = "Launch file (with args)",
+        name = "[GDB] Launch (with args)",
         type = "gdb",
         request = "launch",
         program = function()
@@ -60,7 +66,7 @@ return {
         stopAtBeginningOfMainSubprogram = false,
       },
       {
-        name = 'Attach to process',
+        name = '[GDB] Attach to process',
         type = 'gdb',
         request = 'attach',
         pid = function()
@@ -68,8 +74,44 @@ return {
         end,
         cwd = '${workspaceFolder}',
       },
+      -- LLDB
+      {
+        name = "[LLDB] Launch (no args)",
+        type = "lldb",
+        request = "launch",
+        program = function()
+          return vim.fn.input('Path to executable: ', vim.fn.getcwd() .. '/', 'file')
+        end,
+        cwd = '${workspaceFolder}',
+        stopOnEntry = false,
+      },
+      {
+        name = "[LLDB] Launch (with args)",
+        type = "lldb",
+        request = "launch",
+        program = function()
+          return vim.fn.input('Path to executable: ', vim.fn.getcwd() .. '/', 'file')
+        end,
+        args = function()
+          local args_string = vim.fn.input('Arguments: ')
+          if args_string == "" then
+            return {}
+          end
+          return vim.split(args_string, " +")
+        end,
+        cwd = '${workspaceFolder}',
+        stopOnEntry = false,
+      },
+      {
+        name = '[LLDB] Attach to process',
+        type = 'lldb',
+        request = 'attach',
+        pid = function()
+          return tonumber(vim.fn.input('Process ID: '))
+        end,
+        cwd = '${workspaceFolder}',
+      },
     }
-
     dap.configurations.c = dap.configurations.cpp
     -- DAP UI
     ui.setup()
