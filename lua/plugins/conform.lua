@@ -8,7 +8,7 @@ return {
       "<leader>a",
       function()
         local ft = vim.bo.filetype
-        if ft == "c" or ft == "cpp" or ft == "h" or ft == "hpp" or ft == "html" then
+        if ft == "c" or ft == "cpp" or ft == "h" or ft == "hpp" or ft == "html" or ft == "go" or ft == "gomod" or ft == "gosum" or ft == "gotmpl" then
           require("conform").format({ lsp_fallback = true })
         end
       end,
@@ -27,6 +27,10 @@ return {
       h = { "clang_format" },
       hpp = { "clang_format" },
       html = { "prettier" },
+      go = { "gofumpt" },
+      gomod = { "gofumpt" },
+      gosum = { " gofumpt" },
+      gotmpl = { "gofumpt" },
     },
     formatters = {
       clang_format = {
