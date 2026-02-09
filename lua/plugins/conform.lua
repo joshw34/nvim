@@ -12,7 +12,8 @@ return {
           or ft == "javascript" or ft == "javascriptreact" 
           or ft == "typescript" or ft == "typescriptreact"
           or ft == "css" or ft == "scss" or ft == "less"
-          or ft == "json" or ft == "jsonc" or ft == "go" or ft == "gomod" or ft == "gosum" or ft == "gotmpl" then
+          or ft == "json" or ft == "jsonc" or ft == "go"
+          or ft == "gomod" or ft == "gosum" or ft == "gotmpl" then
           require("conform").format({ lsp_fallback = true })
         end
       end,
