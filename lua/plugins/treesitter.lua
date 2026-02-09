@@ -11,15 +11,19 @@ return {
       'bash',
       'c',
       'cpp',
-      'lua',
-      'python',
+      'css',
       'dockerfile',
-      'nginx',
       'go',
       'html',
+      'javascript',
+      'json',
+      'lua',
+      'nginx',
+      'nix',
+      'python',
+      'typescript',
       'vim',
       'vimdoc',
-      'nix',
     })
 
     -- Auto-enable highlighting

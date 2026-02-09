@@ -8,7 +8,11 @@ return {
       "<leader>a",
       function()
         local ft = vim.bo.filetype
-        if ft == "c" or ft == "cpp" or ft == "h" or ft == "hpp" or ft == "html" then
+        if ft == "c" or ft == "cpp" or ft == "h" or ft == "hpp" or ft == "html" 
+          or ft == "javascript" or ft == "javascriptreact" 
+          or ft == "typescript" or ft == "typescriptreact"
+          or ft == "css" or ft == "scss" or ft == "less"
+          or ft == "json" or ft == "jsonc" then
           require("conform").format({ lsp_fallback = true })
         end
       end,
@@ -27,6 +31,15 @@ return {
       h = { "clang_format" },
       hpp = { "clang_format" },
       html = { "prettier" },
+      javascript = { "prettier" },
+      javascriptreact = { "prettier" },
+      typescript = { "prettier" },
+      typescriptreact = { "prettier" },
+      css = { "prettier" },
+      scss = { "prettier" },
+      less = { "prettier" },
+      json = { "prettier" },
+      jsonc = { "prettier" },
     },
     formatters = {
       clang_format = {

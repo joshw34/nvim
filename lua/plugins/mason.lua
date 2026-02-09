@@ -20,7 +20,7 @@ return {
         return vim.fs.root(0, patterns)
       end
 
-      -- Clangd setup
+      -- Clangd
       vim.lsp.config.clangd = {
         cmd = {
           "clangd",
@@ -36,7 +36,7 @@ return {
         capabilities = capabilities,
       }
 
-      -- gopls setup
+      -- gopls
       vim.lsp.config.gopls = {
         cmd = { "gopls" },
         filetypes = { "go", "gomod", "gosum", "gotmpl" },
@@ -79,7 +79,7 @@ return {
         },
       }
 
-      -- Nixd setup
+      -- Nixd
       vim.lsp.config.nixd = {
         cmd = { "nixd" },
         filetypes = { "nix" },
@@ -87,7 +87,7 @@ return {
         capabilities = capabilities,
       }
 
-      -- Pyright setup
+      -- Pyright
       vim.lsp.config.pyright = {
         cmd = {
           "pyright-langserver",
@@ -107,7 +107,7 @@ return {
         },
       }
 
-      -- Lua LSP setup
+      -- Lua LSP
       vim.lsp.config.lua_ls = {
         root_markers = { ".git" },
         capabilities = capabilities,
@@ -126,7 +126,7 @@ return {
         },
       }
 
-      -- Dockerfile LSP setup
+      -- Dockerfile LSP
       vim.lsp.config.dockerls = {
         cmd = { "docker-language-server", "start", "--stdio" },
         filetypes = { "dockerfile", "yaml.docker-compose" },  -- Supports both!
@@ -170,7 +170,72 @@ return {
         },
       }
 
-      vim.lsp.enable({ 'clangd', 'gopls', 'nixd', 'pyright', 'lua_ls', 'dockerls', 'nginx_language_server', 'html_lsp' })
+      -- TypeScript/JavaScript LSP
+      vim.lsp.config.ts_ls = {
+        cmd = { 'typescript-language-server', '--stdio' },
+        filetypes = { 'javascript', 'javascriptreact', 'typescript', 'typescriptreact' },
+        root_markers = { 'package.json', 'tsconfig.json', 'jsconfig.json', '.git' },
+        capabilities = capabilities,
+        settings = {
+          typescript = {
+            inlayHints = {
+              includeInlayParameterNameHints = 'all',
+              includeInlayParameterNameHintsWhenArgumentMatchesName = false,
+              includeInlayFunctionParameterTypeHints = true,
+              includeInlayVariableTypeHints = true,
+              includeInlayPropertyDeclarationTypeHints = true,
+              includeInlayFunctionLikeReturnTypeHints = true,
+              includeInlayEnumMemberValueHints = true,
+            }
+          },
+          javascript = {
+            inlayHints = {
+              includeInlayParameterNameHints = 'all',
+              includeInlayParameterNameHintsWhenArgumentMatchesName = false,
+              includeInlayFunctionParameterTypeHints = true,
+              includeInlayVariableTypeHints = true,
+              includeInlayPropertyDeclarationTypeHints = true,
+              includeInlayFunctionLikeReturnTypeHints = true,
+              includeInlayEnumMemberValueHints = true,
+            }
+          }
+        },
+      }
+
+      -- CSS LSP
+      vim.lsp.config.cssls = {
+        cmd = { 'vscode-css-language-server', '--stdio' },
+        filetypes = { 'css', 'scss', 'less' },
+        root_markers = { 'package.json', '.git' },
+        capabilities = capabilities,
+        settings = {
+          css = {
+            validate = true
+          },
+          scss = {
+            validate = true
+          },
+          less = {
+            validate = true
+          }
+        },
+      }
+
+      -- JSON LSP
+      vim.lsp.config.jsonls = {
+        cmd = { 'vscode-json-language-server', '--stdio' },
+        filetypes = { 'json', 'jsonc' },
+        root_markers = { '.git' },
+        capabilities = capabilities,
+        settings = {
+          json = {
+            schemas = require('schemastore').json.schemas(),
+            validate = { enable = true },
+          }
+        },
+      }
+
+      vim.lsp.enable({ 'clangd', 'gopls', 'nixd', 'pyright', 'lua_ls', 'dockerls', 'nginx_language_server', 'html_lsp', 'ts_ls', 'cssls', 'jsonls' })
     end,
   },
 }
