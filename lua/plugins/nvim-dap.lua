@@ -16,7 +16,7 @@ return {
     dap_virtual_text.setup()
     -- MASON DAP
     mason_dap.setup({
-      ensure_installed = {},
+      ensure_installed = { "js" },
       automatic_installation = true,
       handlers = {
         function(config)
@@ -34,6 +34,15 @@ return {
       type = "executable",
       command = "/usr/bin/lldb-dap",
       name = "lldb"
+    }
+    dap.adapters["pwa-node"] = {
+      type = "server",
+      host = "localhost",
+      port = "${port}",
+      executable = {
+        command = "js-debug-adapter",
+        args = { "${port}" },
+      }
     }
     -- DAP CONFIGURATIONS
     dap.configurations.cpp = {
@@ -113,6 +122,28 @@ return {
       },
     }
     dap.configurations.c = dap.configurations.cpp
+    -- JS/TS CONFIGURATIONS
+    local js_config = {
+      {
+        name = "Launch file",
+        type = "pwa-node",
+        request = "launch",
+        program = "${file}",
+        cwd = "${workspaceFolder}",
+        sourceMaps = true,
+      },
+      {
+        name = "Attach to process",
+        type = "pwa-node",
+        request = "attach",
+        processId = require("dap.utils").pick_process,
+        cwd = "${workspaceFolder}",
+        sourceMaps = true,
+      },
+    }
+    for _, lang in ipairs({ "javascript", "typescript" }) do
+      dap.configurations[lang] = js_config
+    end
     -- DAP UI
     ui.setup()
     vim.fn.sign_define("DapBreakpoint", { text = "🐞" })
