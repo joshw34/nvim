@@ -202,6 +202,18 @@ return {
         },
       }
 
+      -- ESLINT
+      vim.lsp.config.eslint = {
+        cmd = { 'vscode-eslint-language-server', '--stdio' },
+        filetypes = { 'javascript', 'javascriptreact', 'typescript', 'typescriptreact' },
+        root_markers = { 'eslint.config.js', '.eslintrc.json', '.eslintrc.js', 'package.json', '.git' },
+        capabilities = capabilities,
+        settings = {
+          validate = 'on',
+          run = 'onType',
+        },
+      }
+
       -- CSS LSP
       vim.lsp.config.cssls = {
         cmd = { 'vscode-css-language-server', '--stdio' },
@@ -235,7 +247,7 @@ return {
         },
       }
 
-      vim.lsp.enable({ 'clangd', 'gopls', 'nixd', 'pyright', 'lua_ls', 'dockerls', 'nginx_language_server', 'html_lsp', 'ts_ls', 'cssls', 'jsonls' })
+      vim.lsp.enable({ 'clangd', 'gopls', 'nixd', 'pyright', 'lua_ls', 'dockerls', 'nginx_language_server', 'html_lsp', 'ts_ls', 'eslint', 'cssls', 'jsonls' })
     end,
   },
 }
