@@ -20,6 +20,7 @@ return {
       'lua',
       'nginx',
       'nix',
+      'prisma',
       'python',
       'typescript',
       'vim',
