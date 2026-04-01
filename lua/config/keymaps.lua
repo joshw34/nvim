@@ -61,3 +61,7 @@ function ToggleZoom()
 end
 
 keymap("n", "<leader>sz", ToggleZoom, { desc = "Toggle Zoom" })
+
+-- Fix Home/End Keys in tmux
+vim.keymap.set({'n', 'i', 'v'}, '\x1b[1~', '<Home>')
+vim.keymap.set({'n', 'i', 'v'}, '\x1b[4~', '<End>')

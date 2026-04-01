@@ -13,7 +13,8 @@ return {
           or ft == "typescript" or ft == "typescriptreact"
           or ft == "css" or ft == "scss" or ft == "less"
           or ft == "json" or ft == "jsonc" or ft == "go"
-          or ft == "gomod" or ft == "gosum" or ft == "gotmpl" then
+          or ft == "gomod" or ft == "gosum" or ft == "gotmpl"
+          or ft == "python" then
           require("conform").format({ lsp_fallback = true })
         end
       end,
@@ -45,6 +46,7 @@ return {
       gomod = { "gofumpt" },
       gosum = { " gofumpt" },
       gotmpl = { "gofumpt" },
+      python = { "black" },
     },
     formatters = {
       clang_format = {
