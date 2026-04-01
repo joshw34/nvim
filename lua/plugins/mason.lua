@@ -247,7 +247,14 @@ return {
         },
       }
 
-      vim.lsp.enable({ 'clangd', 'gopls', 'nixd', 'pyright', 'lua_ls', 'dockerls', 'nginx_language_server', 'html_lsp', 'ts_ls', 'eslint', 'cssls', 'jsonls' })
+      -- Prisma LSP
+      vim.lsp.config.prismals = {
+        cmd = { "prisma-language-server", "--stdio" },
+        filetypes = { "prisma" },
+        root_markers = { ".git", "package.json" },
+      }
+
+      vim.lsp.enable({ 'clangd', 'gopls', 'nixd', 'pyright', 'lua_ls', 'dockerls', 'nginx_language_server', 'html_lsp', 'ts_ls', 'eslint', 'cssls', 'jsonls', 'prismals' })
     end,
   },
 }
