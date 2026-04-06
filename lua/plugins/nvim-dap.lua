@@ -140,6 +140,16 @@ return {
         cwd = "${workspaceFolder}",
         sourceMaps = true,
       },
+      {
+        name = "Attach to NestJS",
+        type = "pwa-node",
+        request = "attach",
+        port = 9229,
+        host = "localhost",
+        sourceMaps = true,
+        localRoot = "/app/backend",
+        remoteRoot = "/app/backend",
+      },
     }
     for _, lang in ipairs({ "javascript", "typescript" }) do
       dap.configurations[lang] = js_config
