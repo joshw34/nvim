@@ -40,11 +40,11 @@ return {
       vim.lsp.config.gopls = {
         cmd = { "gopls" },
         filetypes = { "go", "gomod", "gosum", "gotmpl" },
-        root_markers = {"go.mod", ".git", "go.work"},
+        root_markers = { "go.mod", ".git", "go.work" },
         capabilities = capabilities,
         settings = {
           gopls = {
-            gofumpt = true,              -- Use gofumpt for formatting
+            gofumpt = true, -- Use gofumpt for formatting
             codelenses = {
               gc_details = false,
               generate = true,
@@ -83,7 +83,7 @@ return {
       vim.lsp.config.nixd = {
         cmd = { "nixd" },
         filetypes = { "nix" },
-        root_markers = {"flake.nix"},
+        root_markers = { "flake.nix" },
         capabilities = capabilities,
       }
 
@@ -109,7 +109,7 @@ return {
 
       -- Lua LSP
       vim.lsp.config.lua_ls = {
-        root_markers = { ".git" },
+        root_markers = { ".luarc.json", ".git" },
         capabilities = capabilities,
         settings = {
           Lua = {
@@ -129,7 +129,7 @@ return {
       -- Dockerfile LSP
       vim.lsp.config.dockerls = {
         cmd = { "docker-language-server", "start", "--stdio" },
-        filetypes = { "dockerfile", "yaml.docker-compose" },  -- Supports both!
+        filetypes = { "dockerfile", "yaml.docker-compose" }, -- Supports both!
         get_language_id = function(_, ftype)
           if ftype == 'yaml.docker-compose' or ftype:lower():find('ya?ml') then
             return 'dockercompose'
@@ -141,7 +141,7 @@ return {
         capabilities = capabilities,
         initializationOptions = {
           dockercomposeExperimental = {
-          composeSupport = true,
+            composeSupport = true,
           },
           dockerfileExperimental = {
             removeOverlappingIssues = false,
@@ -254,7 +254,8 @@ return {
         root_markers = { ".git", "package.json" },
       }
 
-      vim.lsp.enable({ 'clangd', 'gopls', 'nixd', 'pyright', 'lua_ls', 'dockerls', 'nginx_language_server', 'html_lsp', 'ts_ls', 'eslint', 'cssls', 'jsonls', 'prismals' })
+      vim.lsp.enable({ 'clangd', 'gopls', 'nixd', 'pyright', 'lua_ls', 'dockerls', 'nginx_language_server', 'html_lsp',
+        'ts_ls', 'eslint', 'cssls', 'jsonls', 'prismals' })
     end,
   },
 }
