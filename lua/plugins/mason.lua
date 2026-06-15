@@ -254,8 +254,15 @@ return {
         root_markers = { ".git", "package.json" },
       }
 
+      -- asm_lsp
+      vim.lsp.config.asm_lsp = {
+        cmd = { "asm-lsp" },
+        filetypes = { "asm", "vmasm" },
+        root_markers = { ".asm-lsp.toml", ".git" },
+      }
+
       vim.lsp.enable({ 'clangd', 'gopls', 'nixd', 'pyright', 'lua_ls', 'dockerls', 'nginx_language_server', 'html_lsp',
-        'ts_ls', 'eslint', 'cssls', 'jsonls', 'prismals' })
+        'ts_ls', 'eslint', 'cssls', 'jsonls', 'prismals', 'asm_lsp' })
     end,
   },
 }
