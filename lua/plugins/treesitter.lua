@@ -8,6 +8,7 @@ return {
     }
     -- Install parsers upfront
     ts.install({
+      'asm',
       'bash',
       'c',
       'cpp',
