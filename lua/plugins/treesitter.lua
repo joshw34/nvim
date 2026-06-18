@@ -23,6 +23,7 @@ return {
       'nix',
       'prisma',
       'python',
+      'rust',
       'typescript',
       'vim',
       'vimdoc',
