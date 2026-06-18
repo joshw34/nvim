@@ -14,7 +14,7 @@ return {
           or ft == "css" or ft == "scss" or ft == "less"
           or ft == "json" or ft == "jsonc" or ft == "go"
           or ft == "gomod" or ft == "gosum" or ft == "gotmpl"
-          or ft == "python" then
+          or ft == "python" or ft == "rust" then
           require("conform").format({ lsp_fallback = true })
         end
       end,
@@ -47,6 +47,7 @@ return {
       gosum = { " gofumpt" },
       gotmpl = { "gofumpt" },
       python = { "black" },
+      rust = { "rustfmt" },
     },
     formatters = {
       clang_format = {
